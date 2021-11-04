@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <script src="patient.js"> </script>
+  <script src="xmlReader.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Console_Page/style_cp.css" />
+    <title>Document</title>
+  </head>
+  <button type="button" onclick="loadDoc()">Get Patient Data from XML</button>
+  <button type="button" onclick="new Patient().generate()">Generate Random  Patient</button>
+    <br><br>
+    <table id="demo"></table>
+    
+  <body>
+    <div class="container">
+      <ul id ="chatMsg" style="margin-top: -50%; margin-bottom: -50%">
+
+      </ul>
+
+      <form id="chart_window">
+        <input type="text" id="msg" />
+        <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+      </form>
+    
+    </div>
+  </body>
+  <script src="xmlReader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./Console_Page/app.js"></script>
+
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "se_1_team_1",
+  "version": "1.0.0",
+  "description": "Project for Software engineering 1 - Team 1 - fall 2020",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akar016012/SE_1_Team_1.git"
+  },
+  "author": "Team_1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akar016012/SE_1_Team_1/issues"
+  },
+  "homepage": "https://github.com/akar016012/SE_1_Team_1#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.28.0",
+    "socket.io": "^2.3.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
