@@ -3,6 +3,20 @@ const chatForm = document.getElementById("chart_window");
 const chatCont = document.querySelector(".container");
 const socket = io();
 
+//The user uploads an image
+let isImageUploaded = false;
+let imageSource
+
+function showPreview(event){
+  if(event.target.files.length > 0){
+    let imageSource = URL.createObjectURL(event.target.files[0]);
+    let preview = document.getElementById("file-ip-1-preview");
+    preview.src = imageSource;
+    preview.style.display = "block";
+    isImageUploaded = true;
+  }
+}
+
 //Get userName using Query
 const { username } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
@@ -33,9 +47,9 @@ chatForm.addEventListener("submit", (e) => {
 
 //message to DOM
 function outputMsg(message) {
-  const li = document.createElement("li");
-  li.innerHTML = `
-  ${message.username}   ${message.time} -->
-  ${message.text}`;
+  const li = document.createElement("li"); 
+  let text = ` ${message.username}   ${message.time} -->  `;
+  text += `${message.text}`;
+  li.innerHTML = text;
   chatMsg.appendChild(li);
 }

@@ -1,15 +1,20 @@
+/*
+
 body {
   background-image: url(https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
 }
+*/
 
-.container {
+
+.chatContainer {
   padding: 20% 20px;
-  background-color: rgb(20, 20, 20, 0.85);
+  background-color: rgb(20, 20, 20, 0.85); 
   margin: 4% 30%;
   position: relative;
 }
 
-.btn{
+
+/* .btn{
   background: #dd841e;
   position: absolute;
   bottom: 8%;
@@ -18,15 +23,17 @@ body {
 cursor: pointer;
   color: rgb(0, 0, 0);
   outline-color: maroon;
-}
-input {
+} */
+
+/* input {
   position: absolute;
   bottom: 8%;
   width: 90%;
   background-color: rgba(255, 255, 255);
   color: rgb(0, 0, 0);
   outline-color: maroon;
-}
+} */
+
 ul {
   max-height: 25rem;
   overflow-y: auto;

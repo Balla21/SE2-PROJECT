@@ -28,10 +28,7 @@ io.on("connection", (socket) => {
     socket.emit("message", formatMessage(`Admin`, `Welcome  ${user.username}`));
 
     //when client connects
-    socket.broadcast.emit(
-      "message",
-      formatMessage(`Admin`, `${user.username} has joined the chat`)
-    );
+    socket.broadcast.emit( "message", formatMessage(`Admin`, `${user.username} has joined the chat`));
   });
 
   //Runs when client disconnects
