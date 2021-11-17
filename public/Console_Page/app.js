@@ -9,7 +9,7 @@ let imageSource
 
 function showPreview(event){
   if(event.target.files.length > 0){
-    let imageSource = URL.createObjectURL(event.target.files[0]);
+    imageSource = URL.createObjectURL(event.target.files[0]);
     let preview = document.getElementById("file-ip-1-preview");
     preview.src = imageSource;
     preview.style.display = "block";
@@ -45,11 +45,18 @@ chatForm.addEventListener("submit", (e) => {
   e.target.elements.msg.focus();
 });
 
-//message to DOM
+//Display message to the chatroom
 function outputMsg(message) {
   const li = document.createElement("li"); 
   let text = ` ${message.username}   ${message.time} -->  `;
-  text += `${message.text}`;
+  // user uploads an image with a text to the chat
+  if (isImageUploaded){
+    text += `${message.text} <br> <img src='${imageSource}' >`;
+  }
+  //user only uploads a text to the chat
+  else{
+    text += `${message.text}`;
+  }
   li.innerHTML = text;
   chatMsg.appendChild(li);
 }
