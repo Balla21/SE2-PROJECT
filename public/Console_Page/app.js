@@ -4,16 +4,16 @@ const chatCont = document.querySelector(".container");
 const socket = io();
 
 //The user uploads an image
-let isImageUploaded = false;
-let imageSource
+let preview = document.getElementById("file-ip-1-preview");
+let isFileUploaded = false;
+let fileSource = null;
 
 function showPreview(event){
   if(event.target.files.length > 0){
-    imageSource = URL.createObjectURL(event.target.files[0]);
-    let preview = document.getElementById("file-ip-1-preview");
-    preview.src = imageSource;
+    fileSource = URL.createObjectURL(event.target.files[0]);
+    preview.src = fileSource;
     preview.style.display = "block";
-    isImageUploaded = true;
+    isFileUploaded = true;
   }
 }
 
@@ -33,30 +33,36 @@ socket.on("message", (message) => {
   chat_Msg.scrollTop = chat_Msg.scrollHeight;
 });
 
-// message submit
+// chat communication between user
 chatForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  let message;
+  let textMessage = e.target.elements.msg.value;
+  //The user uploads and sends an image along a text
+  if (isFileUploaded){
+    message = textMessage +  `<br> <img src='${fileSource}' width="300" height="300">`;
+    preview.src = "";
+    preview.style.display = "none";
+  }
+  //user only sends a text to the chat
+  else{
+    message = `${textMessage}`;
+    preview.src = "";
+    preview.style.display = "none";
+  }
 
-  let msg = e.target.elements.msg.value;
   //emmet message to the server.
-  socket.emit("chartMessage", msg);
+  socket.emit("chartMessage", message);
 
   e.target.elements.msg.value = "";
+  e.target.files[0] = "";
   e.target.elements.msg.focus();
 });
 
 //Display message to the chatroom
 function outputMsg(message) {
   const li = document.createElement("li"); 
-  let text = ` ${message.username}   ${message.time} -->  `;
-  // user uploads an image with a text to the chat
-  if (isImageUploaded){
-    text += `${message.text} <br> <img src='${imageSource}' >`;
-  }
-  //user only uploads a text to the chat
-  else{
-    text += `${message.text}`;
-  }
+  let text = ` ${message.username}   ${message.time} -->  ${message.text}`;
   li.innerHTML = text;
   chatMsg.appendChild(li);
 }
