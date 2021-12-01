@@ -8,8 +8,8 @@ let preview = document.getElementById("file-ip-1-preview");
 let isFileUploaded = false;
 let fileSource = null;
 
-function showPreview(event){
-  if(event.target.files.length > 0){
+function showPreview(event) {
+  if (event.target.files.length > 0) {
     fileSource = URL.createObjectURL(event.target.files[0]);
     preview.src = fileSource;
     preview.style.display = "block";
@@ -39,13 +39,16 @@ chatForm.addEventListener("submit", (e) => {
   let message;
   let textMessage = e.target.elements.msg.value;
   //The user uploads and sends an image along a text
-  if (isFileUploaded){
-    message = textMessage +  `<br> <img src='${fileSource}' width="300" height="300">`;
+  if (isFileUploaded) {
+    message =
+      textMessage +
+      `<br> <a href=" ${fileSource}" target="_blank" > <img src="https://www.un.org/sites/un2.un.org/files/play-button.png" width="30px" height="30px"/> </> `;
+
     preview.src = "";
     preview.style.display = "none";
   }
   //user only sends a text to the chat
-  else{
+  else {
     message = `${textMessage}`;
     preview.src = "";
     preview.style.display = "none";
@@ -61,7 +64,7 @@ chatForm.addEventListener("submit", (e) => {
 
 //Display message to the chatroom
 function outputMsg(message) {
-  const li = document.createElement("li"); 
+  const li = document.createElement("li");
   let text = ` ${message.username}   ${message.time} -->  ${message.text}`;
   li.innerHTML = text;
   chatMsg.appendChild(li);
